@@ -44,35 +44,35 @@ const drowningStages: DrowningStage[] = [
     stage: 1,
     name: "Initial Submersion",
     description: "Water begins to rise, initial panic response",
-    duration: 8000,
+    duration: 600000, // 10 minutes
     effects: ["water-rise-20", "mild-struggle"]
   },
   {
     stage: 2,
     name: "Breath Holding",
     description: "Attempting to hold breath, increased anxiety",
-    duration: 12000,
+    duration: 720000, // 12 minutes
     effects: ["water-rise-40", "chest-tension", "eye-widening"]
   },
   {
     stage: 3,
     name: "Involuntary Breathing",
     description: "Body forces breathing, water enters lungs",
-    duration: 10000,
+    duration: 600000, // 10 minutes
     effects: ["water-rise-60", "violent-struggle", "color-change"]
   },
   {
     stage: 4,
     name: "Hypoxia",
     description: "Oxygen deprivation, movements become weak",
-    duration: 8000,
+    duration: 480000, // 8 minutes
     effects: ["water-rise-80", "weak-movements", "consciousness-fade"]
   },
   {
     stage: 5,
     name: "Unconsciousness",
     description: "Loss of consciousness, body goes limp",
-    duration: 7000,
+    duration: 300000, // 5 minutes
     effects: ["water-rise-100", "complete-stillness", "death-state"]
   }
 ]

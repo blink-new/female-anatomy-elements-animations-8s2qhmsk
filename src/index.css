@@ -93,7 +93,7 @@
   }
   
   .drowning-animation {
-    animation: drowning-struggle 45s ease-in-out forwards;
+    animation: drowning-struggle 2700s ease-in-out forwards; /* 45 minutes */
   }
   
   .dead-state {
@@ -277,23 +277,23 @@
   }
   
   .drowning-stage-1 .drowning-water {
-    animation: water-rise-stage-1 8s ease-out forwards;
+    animation: water-rise-stage-1 600s ease-out forwards; /* 10 minutes */
   }
   
   .drowning-stage-2 .drowning-water {
-    animation: water-rise-stage-2 12s ease-out forwards;
+    animation: water-rise-stage-2 720s ease-out forwards; /* 12 minutes */
   }
   
   .drowning-stage-3 .drowning-water {
-    animation: water-rise-stage-3 10s ease-out forwards;
+    animation: water-rise-stage-3 600s ease-out forwards; /* 10 minutes */
   }
   
   .drowning-stage-4 .drowning-water {
-    animation: water-rise-stage-4 8s ease-out forwards;
+    animation: water-rise-stage-4 480s ease-out forwards; /* 8 minutes */
   }
   
   .drowning-stage-5 .drowning-water {
-    animation: water-rise-stage-5 7s ease-out forwards;
+    animation: water-rise-stage-5 300s ease-out forwards; /* 5 minutes */
   }
   
   .water-surface {
