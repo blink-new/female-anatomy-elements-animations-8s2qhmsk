@@ -27,7 +27,7 @@
     --ring: 240 4.9% 83.9%;
     --radius: 0.5rem;
     
-    /* Custom anatomy colors */
+    /* Enhanced anatomy colors with 3D depth */
     --anatomy-bg: 240 10% 3.9%;
     --anatomy-figure: 240 5% 64.9%;
     --water: 200 100% 50%;
@@ -41,267 +41,202 @@
 
     background: linear-gradient(135deg, hsl(var(--anatomy-bg)) 0%, #020617 100%);
     min-height: 100vh;
+    perspective: 1000px;
   }
 }
 
 @layer components {
+  /* Enhanced 3D Element Effects */
   .element-water {
-    background: linear-gradient(45deg, rgb(0 191 255 / 30%), rgb(30 144 255 / 30%));
-    box-shadow: 0 0 20px rgb(0 191 255 / 50%);
+    background: linear-gradient(45deg, rgb(0 191 255 / 40%), rgb(30 144 255 / 40%));
+    box-shadow: 
+      0 0 30px rgb(0 191 255 / 60%),
+      inset 0 0 20px rgb(0 191 255 / 30%);
+    border-radius: 15px;
   }
   
   .element-fire {
-    background: linear-gradient(45deg, rgb(255 69 0 / 30%), rgb(255 140 0 / 30%));
-    box-shadow: 0 0 20px rgb(255 69 0 / 50%);
+    background: linear-gradient(45deg, rgb(255 69 0 / 40%), rgb(255 140 0 / 40%));
+    box-shadow: 
+      0 0 30px rgb(255 69 0 / 60%),
+      inset 0 0 20px rgb(255 69 0 / 30%);
+    border-radius: 15px;
   }
   
   .element-earth {
-    background: linear-gradient(45deg, rgb(139 69 19 / 30%), rgb(160 82 45 / 30%));
-    box-shadow: 0 0 20px rgb(139 69 19 / 50%);
+    background: linear-gradient(45deg, rgb(139 69 19 / 40%), rgb(160 82 45 / 40%));
+    box-shadow: 
+      0 0 30px rgb(139 69 19 / 60%),
+      inset 0 0 20px rgb(139 69 19 / 30%);
+    border-radius: 15px;
   }
   
   .element-air {
-    background: linear-gradient(45deg, rgb(135 206 235 / 30%), rgb(173 216 230 / 30%));
-    box-shadow: 0 0 20px rgb(135 206 235 / 50%);
+    background: linear-gradient(45deg, rgb(135 206 235 / 40%), rgb(173 216 230 / 40%));
+    box-shadow: 
+      0 0 30px rgb(135 206 235 / 60%),
+      inset 0 0 20px rgb(135 206 235 / 30%);
+    border-radius: 15px;
   }
   
-  .clothing-layer {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .clothing-layer.removing {
-    opacity: 0%;
-    transform: scale(0.95) translateY(-10px);
-  }
-  
-  .anatomy-figure {
-    transition: all 0.3s ease;
+  /* Enhanced 3D Clothing Layers */
+  .clothing-layer-3d {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
   }
   
-  .anatomy-figure:hover {
-    transform: scale(1.01);
-    filter: brightness(1.1);
+  .clothing-layer-3d.removing {
+    opacity: 0%;
+    transform: scale(0.9) translateY(-20px) rotateX(15deg);
   }
   
+  /* Ultra-Realistic 3D Figure */
+  .anatomy-figure-3d {
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    filter: 
+      drop-shadow(0 0 30px rgb(59 130 246 / 40%))
+      drop-shadow(0 15px 35px rgb(0 0 0 / 60%));
+  }
+  
+  /* Performance Optimizations */
+  .anatomy-figure-3d,
+  .realistic-figure,
+  .clothing-layer-3d,
+  .element-overlay-3d {
+    will-change: transform, filter;
+    backface-visibility: hidden;
+  }
+  
+  .anatomy-figure-3d:hover {
+    transform: scale(1.02) rotateY(2deg);
+    filter: 
+      brightness(1.15)
+      drop-shadow(0 0 40px rgb(59 130 246 / 60%))
+      drop-shadow(0 20px 45px rgb(0 0 0 / 70%));
+  }
+  
+  .anatomy-figure-3d:active {
+    transform: scale(0.98) rotateY(1deg);
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* Realistic Figure SVG Enhancement */
+  .realistic-figure {
+    filter: 
+      drop-shadow(0 0 25px rgb(59 130 246 / 60%)) 
+      drop-shadow(0 10px 30px rgb(0 0 0 / 50%))
+      drop-shadow(0 0 15px rgb(255 255 255 / 10%));
+    transform-style: preserve-3d;
+  }
+  
+  /* Enhanced Animation Effects */
   .pain-animation {
-    animation: pain-pulse 1s ease-in-out infinite;
+    animation: pain-pulse-3d 1s ease-in-out infinite;
   }
   
   .death-animation {
-    animation: death-fade 3s ease-in-out forwards;
+    animation: death-fade-3d 3s ease-in-out forwards;
   }
   
   .drowning-animation {
-    animation: drowning-struggle 2700s ease-in-out forwards; /* 45 minutes */
+    animation: drowning-struggle-3d 2700s ease-in-out forwards; /* 45 minutes */
   }
   
+  /* Enhanced Dead State */
   .dead-state {
-    filter: grayscale(100%) brightness(0.3) !important;
-    opacity: 60%;
+    filter: 
+      grayscale(100%) 
+      brightness(0.2) 
+      drop-shadow(0 0 20px rgb(255 0 0 / 40%)) !important;
+    opacity: 50%;
     pointer-events: none;
+    transform: scale(0.98) rotateX(10deg);
   }
   
-  .touch-reaction {
-    animation: touch-reaction-float 2s ease-out forwards;
+  /* Enhanced Touch Reactions */
+  .touch-reaction-3d {
+    animation: touch-reaction-float-3d 2s ease-out forwards;
+    transform-style: preserve-3d;
   }
   
-  @keyframes touch-reaction-float {
-    0% {
-      opacity: 100%;
-      transform: translate(-50%, -50%) scale(0.5);
-    }
-
-    50% {
-      opacity: 100%;
-      transform: translate(-50%, -70px) scale(1.2);
-    }
-
-    100% {
-      opacity: 0%;
-      transform: translate(-50%, -100px) scale(0.8);
-    }
+  /* Enhanced Element Overlays */
+  .element-overlay-3d {
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+    transform-style: preserve-3d;
   }
   
-  @keyframes pain-pulse {
-    0%, 100% { 
-      filter: brightness(1) hue-rotate(0deg);
-      transform: scale(1);
-    }
-
-    50% { 
-      filter: brightness(1.3) hue-rotate(15deg);
-      transform: scale(1.02);
-    }
-  }
-  
-  @keyframes death-fade {
-    0% { 
-      filter: brightness(1) saturate(1);
-      opacity: 100%;
-    }
-
-    50% {
-      filter: brightness(0.5) saturate(0.3);
-      opacity: 70%;
-    }
-
-    100% { 
-      filter: brightness(0.2) saturate(0);
-      opacity: 30%;
-    }
-  }
-  
-  @keyframes drowning-struggle {
-    0% { 
-      transform: scale(1) rotate(0deg);
-      filter: brightness(1) hue-rotate(0deg);
-    }
-
-    20% { 
-      transform: scale(1.02) rotate(-2deg);
-      filter: brightness(0.9) hue-rotate(10deg);
-    }
-
-    40% { 
-      transform: scale(0.98) rotate(1deg);
-      filter: brightness(0.8) hue-rotate(20deg);
-    }
-
-    60% { 
-      transform: scale(1.01) rotate(-1deg);
-      filter: brightness(0.7) hue-rotate(30deg);
-    }
-
-    80% { 
-      transform: scale(0.99) rotate(0.5deg);
-      filter: brightness(0.6) hue-rotate(40deg);
-    }
-
-    100% { 
-      transform: scale(1) rotate(0deg);
-      filter: brightness(0.5) hue-rotate(50deg) saturate(0.7);
-    }
-  }
-  
-  .particle {
+  /* Enhanced 3D Particles */
+  .particle-3d {
     position: absolute;
     pointer-events: none;
     border-radius: 50%;
+    transform-style: preserve-3d;
   }
   
   .particle-water {
-    background: radial-gradient(circle, rgb(0 191 255 / 80%), transparent);
-    animation: float-water 2s ease-in-out infinite;
+    background: radial-gradient(circle, rgb(0 191 255 / 90%), transparent);
+    animation: float-water-3d 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgb(0 191 255 / 60%);
   }
   
   .particle-fire {
-    background: radial-gradient(circle, rgb(255 69 0 / 80%), transparent);
-    animation: flicker-fire 1.5s ease-in-out infinite;
+    background: radial-gradient(circle, rgb(255 69 0 / 90%), transparent);
+    animation: flicker-fire-3d 1.5s ease-in-out infinite;
+    box-shadow: 0 0 12px rgb(255 69 0 / 70%);
   }
   
   .particle-earth {
-    background: radial-gradient(circle, rgb(139 69 19 / 80%), transparent);
-    animation: fall-earth 3s linear infinite;
+    background: radial-gradient(circle, rgb(139 69 19 / 90%), transparent);
+    animation: fall-earth-3d 3s linear infinite;
+    box-shadow: 0 0 8px rgb(139 69 19 / 50%);
   }
   
   .particle-air {
-    background: radial-gradient(circle, rgb(135 206 235 / 60%), transparent);
-    animation: drift-air 4s ease-in-out infinite;
+    background: radial-gradient(circle, rgb(135 206 235 / 70%), transparent);
+    animation: drift-air-3d 4s ease-in-out infinite;
+    box-shadow: 0 0 6px rgb(135 206 235 / 40%);
   }
   
-  @keyframes float-water {
-    0%, 100% { 
-      transform: translateY(0) rotate(0deg); 
-    }
-
-    50% { 
-      transform: translateY(-20px) rotate(180deg); 
-    }
-  }
-  
-  @keyframes flicker-fire {
-    0%, 100% { 
-      transform: scale(1) translateY(0); 
-      opacity: 80%; 
-    }
-
-    50% { 
-      transform: scale(1.2) translateY(-15px); 
-      opacity: 100%; 
-    }
-  }
-  
-  @keyframes fall-earth {
-    0% { 
-      transform: translateY(-100px) rotate(0deg); 
-      opacity: 0%; 
-    }
-
-    10% { 
-      opacity: 100%; 
-    }
-
-    90% { 
-      opacity: 100%; 
-    }
-
-    100% { 
-      transform: translateY(100px) rotate(360deg); 
-      opacity: 0%; 
-    }
-  }
-  
-  @keyframes drift-air {
-    0%, 100% { 
-      transform: translateX(0) translateY(0) scale(1); 
-    }
-
-    25% { 
-      transform: translateX(20px) translateY(-10px) scale(1.1); 
-    }
-
-    50% { 
-      transform: translateX(-10px) translateY(-20px) scale(0.9); 
-    }
-
-    75% { 
-      transform: translateX(-20px) translateY(-5px) scale(1.05); 
-    }
-  }
-  
-  /* Enhanced Drowning Effects with Stages */
-  .drowning-water {
-    animation: water-rise 5s ease-out forwards;
+  /* Enhanced Drowning Water Effects */
+  .drowning-water-3d {
+    animation: water-rise-3d 5s ease-out forwards;
     height: 0;
+    backdrop-filter: blur(3px);
+    border-radius: 20px 20px 0 0;
+    transform-style: preserve-3d;
   }
   
-  .drowning-stage-1 .drowning-water {
-    animation: water-rise-stage-1 600s ease-out forwards; /* 10 minutes */
+  .drowning-stage-1 .drowning-water-3d {
+    animation: water-rise-stage-1-3d 600s ease-out forwards; /* 10 minutes */
   }
   
-  .drowning-stage-2 .drowning-water {
-    animation: water-rise-stage-2 720s ease-out forwards; /* 12 minutes */
+  .drowning-stage-2 .drowning-water-3d {
+    animation: water-rise-stage-2-3d 720s ease-out forwards; /* 12 minutes */
   }
   
-  .drowning-stage-3 .drowning-water {
-    animation: water-rise-stage-3 600s ease-out forwards; /* 10 minutes */
+  .drowning-stage-3 .drowning-water-3d {
+    animation: water-rise-stage-3-3d 600s ease-out forwards; /* 10 minutes */
   }
   
-  .drowning-stage-4 .drowning-water {
-    animation: water-rise-stage-4 480s ease-out forwards; /* 8 minutes */
+  .drowning-stage-4 .drowning-water-3d {
+    animation: water-rise-stage-4-3d 480s ease-out forwards; /* 8 minutes */
   }
   
-  .drowning-stage-5 .drowning-water {
-    animation: water-rise-stage-5 300s ease-out forwards; /* 5 minutes */
+  .drowning-stage-5 .drowning-water-3d {
+    animation: water-rise-stage-5-3d 300s ease-out forwards; /* 5 minutes */
   }
   
-  .water-surface {
-    animation: water-ripple 2s ease-in-out infinite;
+  .water-surface-3d {
+    animation: water-ripple-3d 2s ease-in-out infinite;
+    filter: blur(1px);
+    box-shadow: 0 0 15px rgb(59 130 246 / 50%);
   }
   
-  .bubble {
-    animation: bubble-float 3s ease-in-out infinite;
+  .bubble-3d {
+    animation: bubble-float-3d 3s ease-in-out infinite;
+    transform-style: preserve-3d;
   }
   
   .bubble-1 {
@@ -328,151 +263,334 @@
     animation-delay: 1.5s;
   }
   
-  /* Drowning Stage Animations */
-  @keyframes water-rise-stage-1 {
-    0% { 
-      height: 0;
+  /* Enhanced 3D Keyframe Animations */
+  @keyframes touch-reaction-float-3d {
+    0% {
+      opacity: 100%;
+      transform: translate(-50%, -50%) scale(0.5) rotateZ(0deg);
+    }
+
+    50% {
+      opacity: 100%;
+      transform: translate(-50%, -80px) scale(1.3) rotateZ(180deg);
+    }
+
+    100% {
       opacity: 0%;
-    }
-
-    100% { 
-      height: 20%;
-      opacity: 40%;
+      transform: translate(-50%, -120px) scale(0.7) rotateZ(360deg);
     }
   }
   
-  @keyframes water-rise-stage-2 {
-    0% { 
-      height: 20%;
-      opacity: 40%;
-    }
-
-    100% { 
-      height: 40%;
-      opacity: 55%;
-    }
-  }
-  
-  @keyframes water-rise-stage-3 {
-    0% { 
-      height: 40%;
-      opacity: 55%;
-    }
-
-    100% { 
-      height: 65%;
-      opacity: 70%;
-    }
-  }
-  
-  @keyframes water-rise-stage-4 {
-    0% { 
-      height: 65%;
-      opacity: 70%;
-    }
-
-    100% { 
-      height: 85%;
-      opacity: 85%;
-    }
-  }
-  
-  @keyframes water-rise-stage-5 {
-    0% { 
-      height: 85%;
-      opacity: 85%;
-    }
-
-    100% { 
-      height: 100%;
-      opacity: 95%;
-    }
-  }
-  
-  @keyframes water-rise {
-    0% { 
-      height: 0;
-      opacity: 0%;
-    }
-
-    20% { 
-      height: 20%;
-      opacity: 60%;
+  @keyframes pain-pulse-3d {
+    0%, 100% { 
+      filter: 
+        brightness(1) 
+        hue-rotate(0deg)
+        drop-shadow(0 0 25px rgb(59 130 246 / 60%));
+      transform: scale(1) rotateX(5deg);
     }
 
     50% { 
-      height: 60%;
-      opacity: 80%;
+      filter: 
+        brightness(1.4) 
+        hue-rotate(20deg)
+        drop-shadow(0 0 35px rgb(255 100 100 / 80%));
+      transform: scale(1.03) rotateX(3deg);
+    }
+  }
+  
+  @keyframes death-fade-3d {
+    0% { 
+      filter: 
+        brightness(1) 
+        saturate(1)
+        drop-shadow(0 0 25px rgb(59 130 246 / 60%));
+      opacity: 100%;
+      transform: scale(1) rotateX(5deg);
+    }
+
+    50% {
+      filter: 
+        brightness(0.4) 
+        saturate(0.2)
+        drop-shadow(0 0 20px rgb(255 0 0 / 50%));
+      opacity: 60%;
+      transform: scale(0.99) rotateX(8deg);
+    }
+
+    100% { 
+      filter: 
+        brightness(0.2) 
+        saturate(0)
+        grayscale(100%)
+        drop-shadow(0 0 20px rgb(255 0 0 / 40%));
+      opacity: 30%;
+      transform: scale(0.98) rotateX(10deg);
+    }
+  }
+  
+  @keyframes drowning-struggle-3d {
+    0% { 
+      transform: scale(1) rotate(0deg) rotateX(5deg);
+      filter: 
+        brightness(1) 
+        hue-rotate(0deg)
+        drop-shadow(0 0 25px rgb(59 130 246 / 60%));
+    }
+
+    20% { 
+      transform: scale(1.03) rotate(-3deg) rotateX(3deg);
+      filter: 
+        brightness(0.9) 
+        hue-rotate(15deg)
+        drop-shadow(0 0 30px rgb(0 191 255 / 70%));
+    }
+
+    40% { 
+      transform: scale(0.97) rotate(2deg) rotateX(7deg);
+      filter: 
+        brightness(0.8) 
+        hue-rotate(30deg)
+        drop-shadow(0 0 25px rgb(0 150 255 / 60%));
+    }
+
+    60% { 
+      transform: scale(1.01) rotate(-1deg) rotateX(6deg);
+      filter: 
+        brightness(0.7) 
+        hue-rotate(45deg)
+        drop-shadow(0 0 20px rgb(0 100 255 / 50%));
+    }
+
+    80% { 
+      transform: scale(0.99) rotate(0.5deg) rotateX(8deg);
+      filter: 
+        brightness(0.6) 
+        hue-rotate(60deg)
+        drop-shadow(0 0 15px rgb(0 50 255 / 40%));
+    }
+
+    100% { 
+      transform: scale(1) rotate(0deg) rotateX(10deg);
+      filter: 
+        brightness(0.5) 
+        hue-rotate(75deg) 
+        saturate(0.6)
+        drop-shadow(0 0 10px rgb(0 0 255 / 30%));
+    }
+  }
+  
+  @keyframes float-water-3d {
+    0%, 100% { 
+      transform: translateY(0) rotate(0deg) rotateX(0deg); 
+    }
+
+    50% { 
+      transform: translateY(-25px) rotate(180deg) rotateX(15deg); 
+    }
+  }
+  
+  @keyframes flicker-fire-3d {
+    0%, 100% { 
+      transform: scale(1) translateY(0) rotateZ(0deg); 
+      opacity: 85%; 
+    }
+
+    50% { 
+      transform: scale(1.3) translateY(-20px) rotateZ(180deg); 
+      opacity: 100%; 
+    }
+  }
+  
+  @keyframes fall-earth-3d {
+    0% { 
+      transform: translateY(-120px) rotate(0deg) rotateX(0deg); 
+      opacity: 0%; 
+    }
+
+    10% { 
+      opacity: 100%; 
+    }
+
+    90% { 
+      opacity: 100%; 
+    }
+
+    100% { 
+      transform: translateY(120px) rotate(360deg) rotateX(180deg); 
+      opacity: 0%; 
+    }
+  }
+  
+  @keyframes drift-air-3d {
+    0%, 100% { 
+      transform: translateX(0) translateY(0) scale(1) rotateZ(0deg); 
+    }
+
+    25% { 
+      transform: translateX(25px) translateY(-15px) scale(1.2) rotateZ(90deg); 
+    }
+
+    50% { 
+      transform: translateX(-15px) translateY(-25px) scale(0.8) rotateZ(180deg); 
+    }
+
+    75% { 
+      transform: translateX(-25px) translateY(-8px) scale(1.1) rotateZ(270deg); 
+    }
+  }
+  
+  /* Enhanced Drowning Stage Animations with 3D Effects */
+  @keyframes water-rise-stage-1-3d {
+    0% { 
+      height: 0;
+      opacity: 0%;
+      transform: rotateX(0deg);
+    }
+
+    100% { 
+      height: 20%;
+      opacity: 45%;
+      transform: rotateX(2deg);
+    }
+  }
+  
+  @keyframes water-rise-stage-2-3d {
+    0% { 
+      height: 20%;
+      opacity: 45%;
+      transform: rotateX(2deg);
+    }
+
+    100% { 
+      height: 40%;
+      opacity: 60%;
+      transform: rotateX(3deg);
+    }
+  }
+  
+  @keyframes water-rise-stage-3-3d {
+    0% { 
+      height: 40%;
+      opacity: 60%;
+      transform: rotateX(3deg);
+    }
+
+    100% { 
+      height: 65%;
+      opacity: 75%;
+      transform: rotateX(4deg);
+    }
+  }
+  
+  @keyframes water-rise-stage-4-3d {
+    0% { 
+      height: 65%;
+      opacity: 75%;
+      transform: rotateX(4deg);
     }
 
     100% { 
       height: 85%;
       opacity: 90%;
+      transform: rotateX(5deg);
     }
   }
   
-  @keyframes water-ripple {
-    0%, 100% { 
-      transform: scaleX(1) scaleY(1);
-      opacity: 60%;
+  @keyframes water-rise-stage-5-3d {
+    0% { 
+      height: 85%;
+      opacity: 90%;
+      transform: rotateX(5deg);
+    }
+
+    100% { 
+      height: 100%;
+      opacity: 95%;
+      transform: rotateX(6deg);
+    }
+  }
+  
+  @keyframes water-rise-3d {
+    0% { 
+      height: 0;
+      opacity: 0%;
+      transform: rotateX(0deg);
+    }
+
+    20% { 
+      height: 20%;
+      opacity: 65%;
+      transform: rotateX(2deg);
     }
 
     50% { 
-      transform: scaleX(1.1) scaleY(0.8);
-      opacity: 80%;
+      height: 60%;
+      opacity: 85%;
+      transform: rotateX(4deg);
+    }
+
+    100% { 
+      height: 85%;
+      opacity: 95%;
+      transform: rotateX(5deg);
     }
   }
   
-  @keyframes bubble-float {
+  @keyframes water-ripple-3d {
+    0%, 100% { 
+      transform: scaleX(1) scaleY(1) rotateX(0deg);
+      opacity: 65%;
+    }
+
+    50% { 
+      transform: scaleX(1.15) scaleY(0.7) rotateX(3deg);
+      opacity: 85%;
+    }
+  }
+  
+  @keyframes bubble-float-3d {
     0% { 
-      transform: translateY(0) scale(0.8);
+      transform: translateY(0) scale(0.7) rotateZ(0deg);
       opacity: 0%;
     }
 
     20% { 
-      opacity: 80%;
+      opacity: 85%;
     }
 
     80% { 
-      opacity: 60%;
+      opacity: 65%;
     }
 
     100% { 
-      transform: translateY(-100px) scale(1.2);
+      transform: translateY(-120px) scale(1.3) rotateZ(360deg);
       opacity: 0%;
     }
   }
   
-  /* 3D Enhancement Effects */
-  .anatomy-figure svg {
-    filter: drop-shadow(0 0 15px rgb(59 130 246 / 40%)) 
-            drop-shadow(0 5px 10px rgb(0 0 0 / 30%));
-    transform-style: preserve-3d;
+  /* Enhanced Responsive Design */
+  @media (width <= 768px) {
+    .anatomy-figure-3d {
+      transform: scale(0.8);
+    }
+    
+    .realistic-figure {
+      filter: 
+        drop-shadow(0 0 20px rgb(59 130 246 / 50%)) 
+        drop-shadow(0 8px 25px rgb(0 0 0 / 40%));
+    }
   }
   
-  /* Enhanced Clothing Layer Effects */
-  .clothing-layer svg {
-    filter: drop-shadow(0 2px 4px rgb(0 0 0 / 20%));
-  }
-  
-  /* Death State Enhancements */
-  .dead-state svg {
-    filter: grayscale(100%) brightness(0.3) drop-shadow(0 0 10px rgb(255 0 0 / 30%)) !important;
-  }
-  
-  .anatomy-figure:hover svg {
-    filter: drop-shadow(0 0 20px rgb(59 130 246 / 60%)) 
-            drop-shadow(0 8px 15px rgb(0 0 0 / 40%));
-  }
-  
-  /* Responsive Touch Feedback */
-  .anatomy-figure:active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease-out;
-  }
-  
-  /* Progress Bar Custom Styling */
-  .progress-bar {
-    background: linear-gradient(90deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+  /* Enhanced Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .anatomy-figure-3d,
+    .clothing-layer-3d,
+    .touch-reaction-3d,
+    .particle-3d,
+    .bubble-3d {
+      animation: none;
+      transition: none;
+    }
   }
 }

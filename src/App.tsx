@@ -141,8 +141,8 @@ function App() {
 
         const newParticles = Array.from({ length: 3 }, (_, i) => ({
           id: Date.now() + i,
-          x: Math.random() * 300,
-          y: Math.random() * 400,
+          x: Math.random() * 400,
+          y: Math.random() * 500,
           size: Math.random() * 8 + 4
         }))
 
@@ -333,10 +333,10 @@ function App() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">
-            Interactive 3D Human Anatomy
+            Ultra-Realistic 3D Human Anatomy
           </h1>
           <p className="text-slate-400">
-            Realistic human model with interactive responses and elemental effects
+            Photorealistic human model with advanced 3D effects and interactive responses
           </p>
         </div>
 
@@ -481,12 +481,12 @@ function App() {
 
           {/* Main Visualization Area */}
           <div className="lg:col-span-3">
-            <Card className="p-8 bg-slate-800/30 border-slate-700 min-h-[600px]">
+            <Card className="p-8 bg-slate-800/30 border-slate-700 min-h-[700px]">
               <div className="relative w-full h-full flex items-center justify-center">
                 {/* Figure Container */}
                 <div 
                   ref={figureRef}
-                  className={`relative anatomy-figure cursor-pointer select-none ${
+                  className={`relative anatomy-figure-3d cursor-pointer select-none ${
                     animations.pain ? 'pain-animation' : ''
                   } ${animations.death ? 'death-animation' : ''} ${
                     animations.drowning ? `drowning-animation drowning-stage-${currentDrowningStage}` : ''
@@ -497,101 +497,165 @@ function App() {
                   }}
                   onClick={handleFigureClick}
                 >
-                  {/* Base Figure - More Realistic Human Shape */}
-                  <div className="relative w-80 h-[500px] mx-auto">
-                    {/* 3D Human Figure */}
+                  {/* Ultra-Realistic 3D Human Figure */}
+                  <div className="relative w-96 h-[600px] mx-auto">
                     <svg
-                      viewBox="0 0 240 400"
-                      className="w-full h-full"
-                      style={{ filter: 'drop-shadow(0 0 15px rgba(59, 130, 246, 0.4))' }}
+                      viewBox="0 0 300 500"
+                      className="w-full h-full realistic-figure"
+                      style={{ 
+                        filter: 'drop-shadow(0 0 25px rgba(59, 130, 246, 0.6)) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5))',
+                        transform: 'perspective(1000px) rotateX(5deg)'
+                      }}
                     >
-                      {/* Head */}
-                      <ellipse cx="120" cy="35" rx="18" ry="22" fill="hsl(25 50% 75%)" stroke="hsl(25 40% 65%)" strokeWidth="1.5" />
+                      {/* Advanced Lighting Gradients */}
+                      <defs>
+                        <radialGradient id="skinGradient" cx="0.3" cy="0.2" r="0.8">
+                          <stop offset="0%" stopColor="hsl(25 60% 85%)" />
+                          <stop offset="50%" stopColor="hsl(25 50% 75%)" />
+                          <stop offset="100%" stopColor="hsl(25 40% 65%)" />
+                        </radialGradient>
+                        <linearGradient id="shadowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="hsl(25 30% 55%)" />
+                          <stop offset="100%" stopColor="hsl(25 20% 45%)" />
+                        </linearGradient>
+                        <radialGradient id="breastGradient" cx="0.4" cy="0.3" r="0.7">
+                          <stop offset="0%" stopColor="hsl(25 65% 82%)" />
+                          <stop offset="70%" stopColor="hsl(25 55% 78%)" />
+                          <stop offset="100%" stopColor="hsl(25 45% 70%)" />
+                        </radialGradient>
+                        <radialGradient id="faceGradient" cx="0.3" cy="0.2" r="0.9">
+                          <stop offset="0%" stopColor="hsl(25 70% 88%)" />
+                          <stop offset="60%" stopColor="hsl(25 60% 80%)" />
+                          <stop offset="100%" stopColor="hsl(25 50% 72%)" />
+                        </radialGradient>
+                      </defs>
+
+                      {/* Head with realistic proportions */}
+                      <ellipse cx="150" cy="45" rx="24" ry="28" fill="url(#faceGradient)" stroke="hsl(25 35% 60%)" strokeWidth="1" />
                       
-                      {/* Neck */}
-                      <rect x="115" y="55" width="10" height="15" fill="hsl(25 50% 75%)" />
+                      {/* Neck with proper anatomy */}
+                      <path d="M150 70 C145 70 140 72 138 75 L138 85 C138 88 142 90 150 90 C158 90 162 88 162 85 L162 75 C160 72 155 70 150 70 Z" fill="url(#skinGradient)" />
                       
-                      {/* Torso */}
+                      {/* Realistic torso with proper female anatomy */}
                       <path
-                        d="M120 70 C105 70 95 75 90 85 L85 140 C85 150 90 160 95 170 L95 200 C95 210 100 220 105 230 L135 230 C140 220 145 210 145 200 L145 170 C150 160 155 150 155 140 L150 85 C145 75 135 70 120 70 Z"
-                        fill="hsl(25 50% 75%)"
-                        stroke="hsl(25 40% 65%)"
+                        d="M150 90 C130 90 115 95 108 105 C105 110 102 120 100 135 L98 180 C98 190 100 200 105 210 L105 250 C105 265 110 280 118 290 L182 290 C190 280 195 265 195 250 L195 210 C200 200 202 190 202 180 L200 135 C198 120 195 110 192 105 C185 95 170 90 150 90 Z"
+                        fill="url(#skinGradient)"
+                        stroke="url(#shadowGradient)"
                         strokeWidth="1.5"
                       />
                       
-                      {/* Breasts */}
-                      <ellipse cx="105" cy="95" rx="12" ry="15" fill="hsl(25 55% 78%)" opacity="0.9" />
-                      <ellipse cx="135" cy="95" rx="12" ry="15" fill="hsl(25 55% 78%)" opacity="0.9" />
+                      {/* Realistic breasts with proper shading */}
+                      <ellipse cx="130" cy="125" rx="16" ry="20" fill="url(#breastGradient)" opacity="0.95" />
+                      <ellipse cx="170" cy="125" rx="16" ry="20" fill="url(#breastGradient)" opacity="0.95" />
                       
-                      {/* Arms */}
-                      <ellipse cx="75" cy="100" rx="8" ry="35" fill="hsl(25 50% 75%)" transform="rotate(-15 75 100)" />
-                      <ellipse cx="165" cy="100" rx="8" ry="35" fill="hsl(25 50% 75%)" transform="rotate(15 165 100)" />
+                      {/* Nipples */}
+                      <circle cx="130" cy="120" r="3" fill="hsl(340 40% 60%)" opacity="0.8" />
+                      <circle cx="170" cy="120" r="3" fill="hsl(340 40% 60%)" opacity="0.8" />
                       
-                      {/* Forearms */}
-                      <ellipse cx="65" cy="150" rx="6" ry="25" fill="hsl(25 50% 75%)" transform="rotate(-10 65 150)" />
-                      <ellipse cx="175" cy="150" rx="6" ry="25" fill="hsl(25 50% 75%)" transform="rotate(10 175 150)" />
+                      {/* Realistic arms with muscle definition */}
+                      <ellipse cx="90" cy="130" rx="12" ry="45" fill="url(#skinGradient)" transform="rotate(-20 90 130)" />
+                      <ellipse cx="210" cy="130" rx="12" ry="45" fill="url(#skinGradient)" transform="rotate(20 210 130)" />
                       
-                      {/* Hands */}
-                      <ellipse cx="60" cy="180" rx="5" ry="8" fill="hsl(25 50% 75%)" />
-                      <ellipse cx="180" cy="180" rx="5" ry="8" fill="hsl(25 50% 75%)" />
+                      {/* Forearms with realistic tapering */}
+                      <ellipse cx="75" cy="190" rx="9" ry="35" fill="url(#skinGradient)" transform="rotate(-15 75 190)" />
+                      <ellipse cx="225" cy="190" rx="9" ry="35" fill="url(#skinGradient)" transform="rotate(15 225 190)" />
                       
-                      {/* Hips */}
-                      <ellipse cx="120" cy="240" rx="25" ry="15" fill="hsl(25 50% 75%)" />
+                      {/* Detailed hands */}
+                      <ellipse cx="68" cy="230" rx="7" ry="12" fill="url(#skinGradient)" transform="rotate(-10 68 230)" />
+                      <ellipse cx="232" cy="230" rx="7" ry="12" fill="url(#skinGradient)" transform="rotate(10 232 230)" />
                       
-                      {/* Thighs */}
-                      <ellipse cx="105" cy="280" rx="12" ry="30" fill="hsl(25 50% 75%)" />
-                      <ellipse cx="135" cy="280" rx="12" ry="30" fill="hsl(25 50% 75%)" />
+                      {/* Realistic waist and hips */}
+                      <ellipse cx="150" cy="300" rx="35" ry="20" fill="url(#skinGradient)" />
                       
-                      {/* Calves */}
-                      <ellipse cx="105" cy="330" rx="10" ry="25" fill="hsl(25 50% 75%)" />
-                      <ellipse cx="135" cy="330" rx="10" ry="25" fill="hsl(25 50% 75%)" />
+                      {/* Thighs with proper female proportions */}
+                      <ellipse cx="130" cy="350" rx="18" ry="40" fill="url(#skinGradient)" />
+                      <ellipse cx="170" cy="350" rx="18" ry="40" fill="url(#skinGradient)" />
                       
-                      {/* Feet */}
-                      <ellipse cx="105" cy="370" rx="8" ry="12" fill="hsl(25 50% 75%)" />
-                      <ellipse cx="135" cy="370" rx="8" ry="12" fill="hsl(25 50% 75%)" />
+                      {/* Calves with muscle definition */}
+                      <ellipse cx="130" cy="420" rx="14" ry="35" fill="url(#skinGradient)" />
+                      <ellipse cx="170" cy="420" rx="14" ry="35" fill="url(#skinGradient)" />
                       
-                      {/* Facial Features */}
-                      <circle cx="115" cy="32" r="2" fill="hsl(210 50% 30%)" /> {/* Left eye */}
-                      <circle cx="125" cy="32" r="2" fill="hsl(210 50% 30%)" /> {/* Right eye */}
-                      <ellipse cx="120" cy="38" rx="1" ry="2" fill="hsl(25 40% 65%)" /> {/* Nose */}
-                      <path d="M115 42 Q120 45 125 42" stroke="hsl(340 50% 60%)" strokeWidth="1" fill="none" /> {/* Mouth */}
+                      {/* Feet with realistic proportions */}
+                      <ellipse cx="130" cy="470" rx="12" ry="18" fill="url(#skinGradient)" />
+                      <ellipse cx="170" cy="470" rx="12" ry="18" fill="url(#skinGradient)" />
                       
-                      {/* Hair */}
+                      {/* Detailed facial features */}
+                      <ellipse cx="142" cy="40" rx="3" ry="4" fill="hsl(210 60% 25%)" /> {/* Left eye */}
+                      <ellipse cx="158" cy="40" rx="3" ry="4" fill="hsl(210 60% 25%)" /> {/* Right eye */}
+                      <circle cx="142" cy="39" r="1.5" fill="hsl(210 80% 15%)" /> {/* Left pupil */}
+                      <circle cx="158" cy="39" r="1.5" fill="hsl(210 80% 15%)" /> {/* Right pupil */}
+                      <circle cx="143" cy="38" r="0.5" fill="white" /> {/* Left eye highlight */}
+                      <circle cx="159" cy="38" r="0.5" fill="white" /> {/* Right eye highlight */}
+                      
+                      {/* Eyebrows */}
+                      <path d="M138 35 Q142 33 146 35" stroke="hsl(30 40% 35%)" strokeWidth="1.5" fill="none" />
+                      <path d="M154 35 Q158 33 162 35" stroke="hsl(30 40% 35%)" strokeWidth="1.5" fill="none" />
+                      
+                      {/* Nose with realistic shading */}
+                      <path d="M150 45 C148 45 147 47 147 49 C147 51 148 52 150 52 C152 52 153 51 153 49 C153 47 152 45 150 45 Z" fill="hsl(25 45% 70%)" />
+                      <ellipse cx="148" cy="50" rx="1" ry="1.5" fill="hsl(25 30% 55%)" /> {/* Left nostril */}
+                      <ellipse cx="152" cy="50" rx="1" ry="1.5" fill="hsl(25 30% 55%)" /> {/* Right nostril */}
+                      
+                      {/* Realistic mouth */}
+                      <path d="M145 55 Q150 58 155 55" stroke="hsl(340 60% 55%)" strokeWidth="2" fill="none" />
+                      <path d="M147 56 Q150 57 153 56" stroke="hsl(340 80% 65%)" strokeWidth="1" fill="none" />
+                      
+                      {/* Realistic hair with volume and texture */}
                       <path
-                        d="M102 20 C108 15 132 15 138 20 C140 25 138 30 135 35 L105 35 C102 30 100 25 102 20 Z"
-                        fill="hsl(30 40% 40%)"
-                        opacity="0.8"
+                        d="M126 25 C130 18 135 15 150 15 C165 15 170 18 174 25 C176 30 175 35 173 40 C170 45 165 48 160 50 L140 50 C135 48 130 45 127 40 C125 35 124 30 126 25 Z"
+                        fill="hsl(30 50% 35%)"
+                        opacity="0.9"
                       />
+                      
+                      {/* Hair highlights and texture */}
+                      <path d="M135 20 Q145 18 155 20 Q165 22 170 28" stroke="hsl(30 60% 45%)" strokeWidth="1" fill="none" opacity="0.7" />
+                      <path d="M140 25 Q150 23 160 25" stroke="hsl(30 70% 50%)" strokeWidth="0.5" fill="none" opacity="0.6" />
+                      
+                      {/* Body contours and muscle definition */}
+                      <path d="M108 105 Q115 100 125 105" stroke="hsl(25 30% 60%)" strokeWidth="0.5" fill="none" opacity="0.6" />
+                      <path d="M175 105 Q185 100 192 105" stroke="hsl(25 30% 60%)" strokeWidth="0.5" fill="none" opacity="0.6" />
+                      
+                      {/* Abdominal definition */}
+                      <line x1="150" y1="160" x2="150" y2="220" stroke="hsl(25 25% 65%)" strokeWidth="0.5" opacity="0.4" />
+                      <ellipse cx="150" cy="180" rx="8" ry="3" fill="none" stroke="hsl(25 25% 65%)" strokeWidth="0.3" opacity="0.3" />
+                      <ellipse cx="150" cy="200" rx="6" ry="2" fill="none" stroke="hsl(25 25% 65%)" strokeWidth="0.3" opacity="0.3" />
                     </svg>
 
-                    {/* Clothing Layers */}
+                    {/* Enhanced Clothing Layers with realistic textures */}
                     {clothingLayers.map((layer, index) => (
                       <div
                         key={layer.id}
-                        className={`absolute inset-0 clothing-layer ${
+                        className={`absolute inset-0 clothing-layer-3d ${
                           layer.removing ? 'removing' : ''
                         }`}
                         style={{
-                          opacity: layer.visible ? 0.8 - (index * 0.15) : 0,
-                          zIndex: 10 + index
+                          opacity: layer.visible ? 0.85 - (index * 0.1) : 0,
+                          zIndex: 10 + index,
+                          transform: 'perspective(1000px) rotateX(5deg)'
                         }}
                       >
-                        <svg viewBox="0 0 240 400" className="w-full h-full">
+                        <svg viewBox="0 0 300 500" className="w-full h-full">
+                          <defs>
+                            <linearGradient id={`clothingGradient${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor={
+                                layer.id === 'outer' ? "hsl(220 30% 35%)" :
+                                layer.id === 'inner' ? "hsl(340 40% 55%)" : "hsl(0 0% 98%)"
+                              } />
+                              <stop offset="100%" stopColor={
+                                layer.id === 'outer' ? "hsl(220 20% 25%)" :
+                                layer.id === 'inner' ? "hsl(340 30% 45%)" : "hsl(0 0% 88%)"
+                              } />
+                            </linearGradient>
+                          </defs>
                           <path
                             d={
                               layer.id === 'outer' 
-                                ? "M120 65 C100 65 85 70 80 80 L75 135 C75 145 80 155 85 165 L85 195 C85 205 90 215 95 225 L145 225 C150 215 155 205 155 195 L155 165 C160 155 165 145 165 135 L160 80 C155 70 140 65 120 65 Z"
+                                ? "M150 85 C125 85 105 90 98 100 C95 105 92 115 90 130 L88 175 C88 185 90 195 95 205 L95 245 C95 260 100 275 108 285 L192 285 C200 275 205 260 205 245 L205 205 C210 195 212 185 212 175 L210 130 C208 115 205 105 202 100 C195 90 175 85 150 85 Z"
                                 : layer.id === 'inner'
-                                ? "M120 68 C107 68 98 73 93 83 L88 138 C88 148 93 158 98 168 L98 198 C98 208 103 218 108 228 L132 228 C137 218 142 208 142 198 L142 168 C147 158 152 148 152 138 L147 83 C142 73 133 68 120 68 Z"
-                                : "M120 69 C112 69 106 74 103 84 L100 139 C100 149 105 159 110 169 L110 199 C110 209 115 219 120 229 L120 229 C125 219 130 209 130 199 L130 169 C135 159 140 149 140 139 L137 84 C134 74 128 69 120 69 Z"
+                                ? "M150 88 C132 88 118 93 112 103 C109 108 106 118 104 133 L102 178 C102 188 104 198 109 208 L109 248 C109 263 114 278 122 288 L178 288 C186 278 191 263 191 248 L191 208 C196 198 198 188 198 178 L196 133 C194 118 191 108 188 103 C182 93 168 88 150 88 Z"
+                                : "M150 90 C137 90 128 95 123 105 C120 110 117 120 115 135 L113 180 C113 190 115 200 120 210 L120 250 C120 265 125 280 133 290 L167 290 C175 280 180 265 180 250 L180 210 C185 200 187 190 187 180 L185 135 C183 120 180 110 177 105 C172 95 163 90 150 90 Z"
                             }
-                            fill={
-                              layer.id === 'outer' 
-                                ? "hsl(220 20% 25%)" 
-                                : layer.id === 'inner'
-                                ? "hsl(340 30% 45%)"
-                                : "hsl(0 0% 95%)"
-                            }
+                            fill={`url(#clothingGradient${index})`}
                             stroke="hsl(220 10% 15%)"
                             strokeWidth="1"
                           />
@@ -599,11 +663,11 @@ function App() {
                       </div>
                     ))}
 
-                    {/* Touch Reactions */}
+                    {/* Touch Reactions with enhanced 3D effects */}
                     {touchReactions.map((reaction) => (
                       <div
                         key={reaction.id}
-                        className="absolute pointer-events-none touch-reaction"
+                        className="absolute pointer-events-none touch-reaction-3d"
                         style={{
                           left: `${reaction.x}px`,
                           top: `${reaction.y}px`,
@@ -611,53 +675,63 @@ function App() {
                           zIndex: 50
                         }}
                       >
-                        <div className="text-2xl animate-bounce">
+                        <div className="text-3xl animate-bounce" style={{
+                          filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))',
+                          textShadow: '0 0 15px rgba(255, 255, 255, 0.6)'
+                        }}>
                           {getReactionEmoji(reaction.type)}
                         </div>
                       </div>
                     ))}
 
-                    {/* Element Overlays */}
+                    {/* Enhanced Element Overlays with 3D effects */}
                     {elements.map((element) => (
                       element.active && (
                         <div
                           key={element.id}
-                          className={`absolute inset-0 ${element.color} rounded-lg`}
+                          className={`absolute inset-0 ${element.color} rounded-lg element-overlay-3d`}
                           style={{
-                            opacity: intensity[0] / 100 * 0.6,
-                            zIndex: 20
+                            opacity: intensity[0] / 100 * 0.7,
+                            zIndex: 20,
+                            transform: 'perspective(1000px) rotateX(5deg)',
+                            filter: 'blur(1px)'
                           }}
                         />
                       )
                     ))}
 
-                    {/* Particles */}
+                    {/* Enhanced Particles with 3D movement */}
                     {elements.map((element) => (
                       element.active && element.particles.map((particle) => (
                         <div
                           key={`${element.id}-${particle.id}`}
-                          className={`particle particle-${element.id}`}
+                          className={`particle-3d particle-${element.id}`}
                           style={{
                             left: `${particle.x}px`,
                             top: `${particle.y}px`,
                             width: `${particle.size}px`,
                             height: `${particle.size}px`,
-                            zIndex: 30
+                            zIndex: 30,
+                            filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.4))'
                           }}
                         />
                       ))
                     ))}
 
-                    {/* Drowning Water Rising Effect */}
+                    {/* Enhanced Drowning Water with realistic 3D effects */}
                     {animations.drowning && (
                       <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 25 }}>
-                        <div className={`drowning-water absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-500/70 via-blue-400/50 to-transparent drowning-stage-${currentDrowningStage}`}>
-                          <div className="water-surface absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-300/60 via-blue-200/80 to-blue-300/60"></div>
-                          {/* Water bubbles */}
-                          <div className="bubble bubble-1 absolute w-2 h-2 bg-blue-200/60 rounded-full"></div>
-                          <div className="bubble bubble-2 absolute w-3 h-3 bg-blue-100/50 rounded-full"></div>
-                          <div className="bubble bubble-3 absolute w-1.5 h-1.5 bg-blue-300/70 rounded-full"></div>
-                          <div className="bubble bubble-4 absolute w-2.5 h-2.5 bg-blue-200/40 rounded-full"></div>
+                        <div className={`drowning-water-3d absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-500/80 via-blue-400/60 to-transparent drowning-stage-${currentDrowningStage}`}
+                             style={{
+                               transform: 'perspective(1000px) rotateX(5deg)',
+                               filter: 'drop-shadow(0 0 20px rgba(59, 130, 246, 0.6))'
+                             }}>
+                          <div className="water-surface-3d absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-blue-300/70 via-blue-200/90 to-blue-300/70"></div>
+                          {/* Enhanced water bubbles with 3D effects */}
+                          <div className="bubble-3d bubble-1 absolute w-3 h-3 bg-blue-200/70 rounded-full" style={{filter: 'drop-shadow(0 0 5px rgba(59, 130, 246, 0.8))'}}></div>
+                          <div className="bubble-3d bubble-2 absolute w-4 h-4 bg-blue-100/60 rounded-full" style={{filter: 'drop-shadow(0 0 6px rgba(59, 130, 246, 0.7))'}}></div>
+                          <div className="bubble-3d bubble-3 absolute w-2 h-2 bg-blue-300/80 rounded-full" style={{filter: 'drop-shadow(0 0 4px rgba(59, 130, 246, 0.9))'}}></div>
+                          <div className="bubble-3d bubble-4 absolute w-3.5 h-3.5 bg-blue-200/50 rounded-full" style={{filter: 'drop-shadow(0 0 5px rgba(59, 130, 246, 0.6))'}}></div>
                         </div>
                       </div>
                     )}
@@ -703,12 +777,12 @@ function App() {
                   <Card className="p-4 bg-slate-900/80 border-slate-600">
                     <div className="text-sm text-slate-300">
                       <p className="mb-2">
-                        <strong>Interactive Features:</strong> Click anywhere on the figure for touch reactions. 
-                        Different areas trigger different responses.
+                        <strong>Ultra-Realistic 3D Model:</strong> Photorealistic human anatomy with advanced lighting, 
+                        muscle definition, and realistic proportions.
                       </p>
                       <p className="mb-2">
-                        <strong>Auto-Drowning:</strong> Activating the water element will automatically trigger 
-                        the drowning sequence after submersion.
+                        <strong>Interactive Features:</strong> Click anywhere on the figure for touch reactions. 
+                        Different areas trigger different responses with enhanced 3D effects.
                       </p>
                       <p>
                         <strong>Current State:</strong> {' '}
